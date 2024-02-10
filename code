@@ -1,0 +1,89 @@
+How to Show Vendor Name in the Single Product Page in Dokan Multi-Vendor Marketplace? 
+
+
+add_action( 'woocommerce_single_product_summary','single_product_vendor_name' );
+ 
+   function single_product_vendor_name(){
+ 
+   ?>
+ 
+       </a>
+ 
+       <?php
+ 
+           global $product;
+ 
+           $seller = get_post_field( 'post_author', $product->get_id());
+ 
+            $author  = get_user_by( 'id', $seller );
+ 
+
+ 
+ 
+           $store_info = dokan_get_store_info( $author->ID );
+ 
+           if ( !empty( $store_info['store_name'] ) ) { ?>
+ 
+                   <span class="details">
+ 
+                       <?php printf( 'Sold by: <a href="%s">%s</a>', dokan_get_store_url( $author->ID ), $author->display_name ); ?>
+ 
+                   </span>
+ 
+           <?php
+ 
+       }
+ 
+
+ 
+ 
+   }
+
+
+
+
+
+
+
+
+How to Show Vendor Name in the Product Page in Dokan Multi-Vendor Marketplace? 
+
+
+ 
+ add_action( 'woocommerce_after_shop_loop_item_title','sold_by' );
+ 
+   function sold_by(){
+ 
+   ?>
+ 
+       </a>
+ 
+       <?php
+ 
+           global $product;
+ 
+           $seller = get_post_field( 'post_author', $product->get_id());
+ 
+            $author  = get_user_by( 'id', $seller );
+ 
+
+ 
+ 
+           $store_info = dokan_get_store_info( $author->ID );
+ 
+           if ( !empty( $store_info['store_name'] ) ) { ?>
+ 
+                   <span class="details">
+ 
+                       <?php printf( 'Sold by: <a href="%s">%s</a>', dokan_get_store_url( $author->ID ), $author->display_name ); ?>
+ 
+                   </span>
+ 
+           <?php
+ 
+       }
+ 
+
+ 
+ 
+   }
